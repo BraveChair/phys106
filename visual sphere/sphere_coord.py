@@ -14,7 +14,7 @@ def spheric2cartesian(r, theta, phi):
     z = r * np.cos(theta)
     return x, y, z
 
-def generate_sphere(r):
+def generate_sphere():
     # Generate random angles (Full sphere)
     thetap_full = np.arccos(1 - 2 * np.random.rand(n))  # Theta: 0 to π
     phip_full =  2* np.pi * np.random.rand(n) #n  # Phi: 0 to 2π  
@@ -25,7 +25,7 @@ def generate_sphere(r):
     # Set up the figure and 3D axis
     return X_full,Y_full,Z_full
 
-def show_sphere( X_full, Y_full, Z_full,): # Plot the random points on the sphere
+def show_sphere(X_full, Y_full, Z_full,): # Plot the random points on the sphere
     
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
@@ -41,7 +41,7 @@ def show_sphere( X_full, Y_full, Z_full,): # Plot the random points on the spher
     ax.set_title('Monte Carlo Sphere')
     plt.show()
 
-def sphere_bound_testing(R, X_full, Y_full, Z_full):
+def sphere_bound_testing(X_full, Y_full, Z_full):
     coords = np.vstack([X_full, Y_full, Z_full])
     bad_points = np.any((coords < -R - epsilon) | (coords > R + epsilon), axis = 0)
     if np.any(bad_points):
@@ -50,9 +50,9 @@ def sphere_bound_testing(R, X_full, Y_full, Z_full):
     else: print("All points within bounds!")
 
 def main():
-    X_full,Y_full,Z_full = generate_sphere(R)
-    sphere_bound_testing(R,X_full,Y_full,Z_full)
-    # show_sphere(fig1,X_full,Y_full,Z_full)
+    X_full,Y_full,Z_full = generate_sphere()
+    sphere_bound_testing(X_full,Y_full,Z_full)
+    # show_sphere(X_full,Y_full,Z_full)
 
 if __name__ == "__main__":
     main()
