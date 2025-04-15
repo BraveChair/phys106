@@ -6,6 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 R = 1  # Radius of the sphere
 n = 10000  # Number of random points
 epsilon = np.finfo(float).eps
+alpha_s = .8
 
 # Function to convert spherical to Cartesian coordinates
 def spheric2cartesian(r, theta, phi):
@@ -29,7 +30,7 @@ def show_sphere(X_full, Y_full, Z_full,): # Plot the random points on the sphere
     
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(X_full, Y_full, Z_full, color="royalblue", s=3, alpha=0.8)
+    ax.scatter(X_full, Y_full, Z_full, color="royalblue", s=3, alpha= alpha_s)
     
     # Set labels and aspect ratio
     ax.set_xlabel('X')

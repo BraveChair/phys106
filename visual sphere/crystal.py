@@ -9,6 +9,8 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 length, width, height = 2.05, 2.05, 20
 d1 = 1
 x_pos, y_pos, z_pos = d1, 0, 0
+alpha_c = .3
+
 
 def make_box():
     # Define the vertices of the cuboid
@@ -41,7 +43,7 @@ def make_box():
         triangles.append([face[0], face[2], face[3]])
     
     # Create a Poly3DCollection for all the triangles with blue cube color
-    poly3d = Poly3DCollection([vertices[triangle] for triangle in triangles], color='black', alpha=0.3)
+    poly3d = Poly3DCollection([vertices[triangle] for triangle in triangles], color='black', alpha=alpha_c)
     return poly3d
     
 
@@ -53,9 +55,24 @@ def show_box(poly):
 
     # Set background color 
     ax.set_facecolor('Cyan')
+
+    xmax = length + 3
+    ymax = width + 3
+    zmax = height +3
+
+    xmin, ymin,zmin = 0,0,0
+
+    ax.set_xlim(0, xmax)
+    ax.set_ylim(0, ymax)
+    ax.set_zlim(0, zmax)
     
-    ax.set_axis_off()
-    ax.set_box_aspect([length, width, height])
+    # ax.set_axis_off()
+    # ax.set_box_aspect([length, width, height])
+    ax.set_box_aspect([
+        xmax - xmin,
+        ymax - ymin,
+        zmax - zmin
+    ])
 
     plt.show()
 
